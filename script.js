@@ -4,6 +4,28 @@
 
 const cells = document.querySelectorAll(".cell");
 
+cells.forEach(cell => {
+    cell.addEventListener('click', () => {
+        let cellChosen = cell.classList[1].toString(); // these one can be an object
+        let rowChosen = cellChosen.slice(0,1);
+        let colChosen = cellChosen.slice(1,2);
+        playerMove(rowChosen, colChosen);
+        markMove(cell)
+        console.log("test");
+    })
+})
+
+// testing the function to fill in the cell
+
+function markMove(cell) {
+    if (players.playerTurn == "playerA") {
+        cell.classList.add('x');
+    } else {
+        cell.classList.add('o')
+    }
+};
+
+
 function Gameboard(){
     const board = [];
 
@@ -24,10 +46,10 @@ function Gameboard(){
 
 
 const players = {
-    playerA: "X",
-    playerB: "O",
+    playerA: "Player One",
+    playerB: "Player Two",
     playerTurn: 'playerA',
-    switch: () => { players.playerTurn == "playerA" ? players.playerTurn = "playerB" : players.playerTurn = "playerA"
+    switch: () => { players.playerTurn == "playerA" ? players.playerTurn = "playerB" : players.playerTurn = "playerA";
         // if (players.playerTurn == "playerA") {
         //     players.playerTurn = "playerB";
         // } else {
@@ -37,9 +59,9 @@ const players = {
 };
 
 
-const boardT = [[11, 12, 13],
-              [21, 22, 23],
-              [31, 32, 33]];
+// const boardT = [[11, 12, 13],
+//               [21, 22, 23],
+//               [31, 32, 33]];
 
 let playerAMoves = [];
 let playerBMoves = [];
@@ -53,10 +75,13 @@ function playerMove(row, col) {
     };
     if (players.playerTurn == "playerA") {
         playerAMoves.push([row, col]);
+        //render
+        // check winner
     } else {
         playerBMoves.push([row, col]);
     };
     players.switch();
+
     //console.log(boardT)
 }
 
@@ -72,7 +97,6 @@ function checkOcupied(row, col) {
 
 
 // There are 3 possibilities for a winner. Check if there is a player who sutisfies one of them.
-
 
 function isWinner(arr) {
     let sum = 0;

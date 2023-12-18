@@ -54,4 +54,15 @@ a:hover {
 
 .cell {
     border: 1px solid black;
+    background-size: auto 60%; /* Set the height to 70% of the container height */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center center; /* Center the image both horizontally and vertically */
+}
+
+.cell.x {
+    background-image: url(x.png);
+}
+
+.cell.o {
+    background-image: url(o.png);
 }
