@@ -10,35 +10,36 @@ cells.forEach(cell => {
         let rowChosen = cellChosen.slice(0,1);
         let colChosen = cellChosen.slice(1,2);
         playerMove(rowChosen, colChosen);
-        markMove(cell)
-        console.log("test");
+        markMove(cell);
+        players.playerTurn == "playerA" ? isWinner(playerAMoves) : isWinner(playerBMoves);
+        // if (players.winnerDefined == true) {
+        //     alert('winner defined')
+        // }
+        players.winnerDefined == true ? alert('Player ' + players.playerTurn + ' won') : console.log('next')
+        players.switch();
     })
 })
 
 // testing the function to fill in the cell
 
 function markMove(cell) {
-    if (players.playerTurn == "playerA") {
-        cell.classList.add('x');
-    } else {
-        cell.classList.add('o')
-    }
+    players.playerTurn == "playerA" ? cell.classList.add('x') : cell.classList.add('o');
 };
 
 
-function Gameboard(){
-    const board = [];
+// function Gameboard(){
+//     const board = [];
 
-    for(let i=0; i<3; i++) {
-        board[i] = [];
-        for(let j=0; j<3;j++) {
-            board[i][j] = i.toString() + j.toString();
-        }
-    }
-    const getBoard = () => board;
+//     for(let i=0; i<3; i++) {
+//         board[i] = [];
+//         for(let j=0; j<3;j++) {
+//             board[i][j] = i.toString() + j.toString();
+//         }
+//     }
+//     const getBoard = () => board;
 
-    return {getBoard};
-}
+//     return {getBoard};
+// }
 
 // function render() {
 
@@ -46,43 +47,31 @@ function Gameboard(){
 
 
 const players = {
-    playerA: "Player One",
-    playerB: "Player Two",
+    playerAName: "Player One",
+    playerBName: "Player Two",
     playerTurn: 'playerA',
+    winnerDefined: false,
     switch: () => { players.playerTurn == "playerA" ? players.playerTurn = "playerB" : players.playerTurn = "playerA";
-        // if (players.playerTurn == "playerA") {
-        //     players.playerTurn = "playerB";
-        // } else {
-        //     players.playerTurn = "playerA";
-        // }
     }
 };
 
 
-// const boardT = [[11, 12, 13],
-//               [21, 22, 23],
-//               [31, 32, 33]];
 
-let playerAMoves = [];
+let playerAMoves = []; // add to the players object
 let playerBMoves = [];
 
 
 function playerMove(row, col) {
-    
     if(checkOcupied(row,col)) {
         alert("This cell already contains a value, please selec a different cell.");
         return;
     };
     if (players.playerTurn == "playerA") {
         playerAMoves.push([row, col]);
-        //render
-        // check winner
     } else {
         playerBMoves.push([row, col]);
     };
-    players.switch();
-
-    //console.log(boardT)
+    
 }
 
 // check if the option was selected before
@@ -119,13 +108,13 @@ function isWinner(arr) {
 
         // if one of the cases is true, reture true
         if((sum2 == 3) || (sum3 == 3)) {
-            return true;
+            players.winnerDefined = true;
         } else {
             sum2 = 0;
             sum3 = 0;
         };
         if (sum == 3) {
-            return true;
+            players.winnerDefined = true;
         }
     }
 }
