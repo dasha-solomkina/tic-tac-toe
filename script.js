@@ -12,8 +12,9 @@ cells.forEach(cell => {
         playerMove(rowChosen, colChosen);
         markMove(cell);
         players.playerTurn == "playerA" ? isWinner(players.playerAMoves) : isWinner(players.playerBMoves);
-        alertWinner()
+        alertWinner();
         players.switch();
+        highlightTurn();
     })
 })
 
@@ -34,8 +35,6 @@ const players = {
     }
 };
 
-
-
 function playerMove(row, col) {
     if(checkOcupied(row,col)) {
         alert("This cell already contains a value, please select a different cell.");
@@ -48,6 +47,18 @@ function playerMove(row, col) {
     };
     
 }
+
+function highlightTurn() {
+    if (players.playerTurn == "playerA") {
+        document.getElementById('second').classList.remove('highlight');
+        document.getElementById('first').classList.add('highlight');
+    } else {
+        document.getElementById('first').classList.remove('highlight');
+        document.getElementById('second').classList.add('highlight');
+    }
+}
+
+
 
 // check if the option was selected before
 function checkOcupied(row, col) {
@@ -101,11 +112,12 @@ function alertWinner() {
 }
 
 //Input the names and close the popup
-
 document.querySelector("#asknames").addEventListener("submit", function(event) {
     event.preventDefault();
     players.playerAName = document.getElementById("playerA").value;
+    document.getElementById('first').textContent = players.playerAName;
     players.playerBName = document.getElementById("playerB").value;
+    document.getElementById('second').textContent = players.playerBName;
     document.querySelector(".overlay").id = 'hidden';
 })
 

@@ -39,8 +39,21 @@ a:hover {
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.turns {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.highlight {
+    background-color: #a2bcfd;
+    padding: 2px 4px;
+    border-radius: 6px;
 }
 
 .board {
