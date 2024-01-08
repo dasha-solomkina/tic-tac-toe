@@ -23,11 +23,9 @@ function markMove(cell) {
     players.playerTurn == "playerA" ? cell.classList.add('x') : cell.classList.add('o');
 };
 
-
-
 const players = {
-    playerAName: "Player One",
-    playerBName: "Player Two",
+    playerAName: "Player 1",
+    playerBName: "Player 2",
     playerTurn: 'playerA',
     playerAMoves: [],
     playerBMoves: [],
@@ -101,6 +99,15 @@ function alertWinner() {
         alert('Player ' + players.playerTurn + ' won');
     }
 }
+
+//Input the names and close the popup
+
+document.querySelector("#asknames").addEventListener("submit", function(event) {
+    event.preventDefault();
+    players.playerAName = document.getElementById("playerA").value;
+    players.playerBName = document.getElementById("playerB").value;
+    document.querySelector(".overlay").id = 'hidden';
+})
 
 
 
