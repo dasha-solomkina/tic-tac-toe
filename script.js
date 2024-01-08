@@ -11,11 +11,8 @@ cells.forEach(cell => {
         let colChosen = cellChosen.slice(1,2);
         playerMove(rowChosen, colChosen);
         markMove(cell);
-        players.playerTurn == "playerA" ? isWinner(playerAMoves) : isWinner(playerBMoves);
-        // if (players.winnerDefined == true) {
-        //     alert('winner defined')
-        // }
-        players.winnerDefined == true ? alert('Player ' + players.playerTurn + ' won') : console.log('next')
+        players.playerTurn == "playerA" ? isWinner(players.playerAMoves) : isWinner(players.playerBMoves);
+        alertWinner()
         players.switch();
     })
 })
@@ -27,29 +24,13 @@ function markMove(cell) {
 };
 
 
-// function Gameboard(){
-//     const board = [];
-
-//     for(let i=0; i<3; i++) {
-//         board[i] = [];
-//         for(let j=0; j<3;j++) {
-//             board[i][j] = i.toString() + j.toString();
-//         }
-//     }
-//     const getBoard = () => board;
-
-//     return {getBoard};
-// }
-
-// function render() {
-
-// }
-
 
 const players = {
     playerAName: "Player One",
     playerBName: "Player Two",
     playerTurn: 'playerA',
+    playerAMoves: [],
+    playerBMoves: [],
     winnerDefined: false,
     switch: () => { players.playerTurn == "playerA" ? players.playerTurn = "playerB" : players.playerTurn = "playerA";
     }
@@ -57,26 +38,22 @@ const players = {
 
 
 
-let playerAMoves = []; // add to the players object
-let playerBMoves = [];
-
-
 function playerMove(row, col) {
     if(checkOcupied(row,col)) {
-        alert("This cell already contains a value, please selec a different cell.");
+        alert("This cell already contains a value, please select a different cell.");
         return;
     };
     if (players.playerTurn == "playerA") {
-        playerAMoves.push([row, col]);
+        players.playerAMoves.push([row, col]);
     } else {
-        playerBMoves.push([row, col]);
+        players.playerBMoves.push([row, col]);
     };
     
 }
 
 // check if the option was selected before
 function checkOcupied(row, col) {
-    let allPlayerMoves = playerAMoves.concat(playerBMoves);
+    let allPlayerMoves = players.playerAMoves.concat(players.playerBMoves);
     for (let arr of allPlayerMoves) {
         if((row == arr[0]) && (col == arr[1])) {
             return true;
@@ -118,6 +95,14 @@ function isWinner(arr) {
         }
     }
 }
+
+function alertWinner() {
+    if(players.winnerDefined == true) {
+        alert('Player ' + players.playerTurn + ' won');
+    }
+}
+
+
 
 // let test = [[1,1],[2,2],[0,0],[1,2]]
 // let test2 = [[1,1],[1,2],[1,0],[2,2]]
