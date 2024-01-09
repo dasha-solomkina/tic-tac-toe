@@ -1,6 +1,3 @@
-// const gameFlow = {
-    //here is the game flow
-//}
 
 const cells = document.querySelectorAll(".cell");
 
@@ -58,8 +55,6 @@ function highlightTurn() {
     }
 }
 
-
-
 // check if the option was selected before
 function checkOcupied(row, col) {
     let allPlayerMoves = players.playerAMoves.concat(players.playerBMoves);
@@ -70,9 +65,7 @@ function checkOcupied(row, col) {
     };
 };
 
-
 // There are 3 possibilities for a winner. Check if there is a player who sutisfies one of them.
-
 function isWinner(arr) {
     let sum = 0;
     let sum2 = 0;
@@ -105,9 +98,11 @@ function isWinner(arr) {
     }
 }
 
+// alert the winner and restart the game
 function alertWinner() {
     if(players.winnerDefined == true) {
-        alert('Player ' + players.playerTurn + ' won');
+        document.querySelector(".overlay2").id = '';
+        players.playerTurn == "playerA" ? document.getElementById("winnerName").textContent = players.playerAName : document.getElementById("winnerName").textContent = players.playerBName;
     }
 }
 
@@ -120,10 +115,3 @@ document.querySelector("#asknames").addEventListener("submit", function(event) {
     document.getElementById('second').textContent = players.playerBName;
     document.querySelector(".overlay").id = 'hidden';
 })
-
-
-
-// let test = [[1,1],[2,2],[0,0],[1,2]]
-// let test2 = [[1,1],[1,2],[1,0],[2,2]]
-// let test3 = [[1,2],[0,2],[0,2],[1,1]]
-// let test4 = [[1,1],[1,2]]
