@@ -7,6 +7,12 @@ cells.forEach(cell => {
         let cellChosen = cell.classList[1].toString(); // these one can be an object
         let rowChosen = cellChosen.slice(0,1);
         let colChosen = cellChosen.slice(1,2);
+
+        if(checkOcupied(rowChosen, colChosen)) {
+            alert("This cell is already occupied. Please choose another one.");
+            return;
+        }
+
         playerMove(rowChosen, colChosen);
         markMove(cell);
         players.playerTurn == "playerA" ? isWinner(players.playerAMoves) : isWinner(players.playerBMoves);
@@ -32,10 +38,6 @@ const players = {
 };
 
 function playerMove(row, col) {
-    if(checkOcupied(row,col)) {
-        alert("This cell already contains a value, please select a different cell.");
-        return;
-    };
     if (players.playerTurn == "playerA") {
         players.playerAMoves.push([row, col]);
     } else {
@@ -45,13 +47,11 @@ function playerMove(row, col) {
 }
 
 function highlightTurn() {
-    if (players.playerTurn == "playerA") {
-        document.getElementById('second').classList.remove('highlight');
-        document.getElementById('first').classList.add('highlight');
-    } else {
-        document.getElementById('first').classList.remove('highlight');
-        document.getElementById('second').classList.add('highlight');
-    }
+    const firstPlayer = document.getElementById('first');
+    const secondPlayer = document.getElementById('second');
+
+    firstPlayer.classList.toggle('highlight', players.playerTurn === "playerA");
+    secondPlayer.classList.toggle('highlight', players.playerTurn === "playerB");
 }
 
 // check if the option was selected before
@@ -65,6 +65,8 @@ function checkOcupied(row, col) {
 };
 
 // There are 4 possibilities for a winner. Check if there is a player who sutisfies one of them.
+// There is an alternative way - create an array with all winning combinations and then check
+// the pleyers moved, for now I will leave the longer version.
 function isWinner(arr) {
     let sum = 0;
     let sum2 = 0;
