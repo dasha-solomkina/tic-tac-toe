@@ -1,3 +1,4 @@
+(function() {
 
 const cells = document.querySelectorAll(".cell");
 
@@ -14,8 +15,6 @@ cells.forEach(cell => {
         highlightTurn();
     })
 })
-
-// testing the function to fill in the cell
 
 function markMove(cell) {
     players.playerTurn == "playerA" ? cell.classList.add('x') : cell.classList.add('o');
@@ -77,6 +76,7 @@ function isWinner(arr) {
         if(a[0] == a[1]) {
             sum += 1;
         };
+        // check case 4: the opposite of case 1
         if((a[0] == 0 && a[1] == 2) || (a[0] == 1 && a[1] == 1) || (a[0] == 2 && a[1] == 0)) {
             sum4 += 1;
         }
@@ -127,3 +127,5 @@ document.querySelector("#asknames").addEventListener("submit", function(event) {
     document.getElementById('second').textContent = players.playerBName;
     document.querySelector(".overlay").id = 'hidden';
 })
+
+})();
