@@ -65,17 +65,21 @@ function checkOcupied(row, col) {
     };
 };
 
-// There are 3 possibilities for a winner. Check if there is a player who sutisfies one of them.
+// There are 4 possibilities for a winner. Check if there is a player who sutisfies one of them.
 function isWinner(arr) {
     let sum = 0;
     let sum2 = 0;
     let sum3 = 0;
+    let sum4 = 0;
 
     for(const a of arr) {
         //check case 1: rol=col 
         if(a[0] == a[1]) {
             sum += 1;
         };
+        if((a[0] == 0 && a[1] == 2) || (a[0] == 1 && a[1] == 1) || (a[0] == 2 && a[1] == 0)) {
+            sum4 += 1;
+        }
         for(const b of arr) { // check case 2: same col
             if(a[1] == b[1]) {
                 sum2 += 1;
@@ -95,6 +99,9 @@ function isWinner(arr) {
         if (sum == 3) {
             players.winnerDefined = true;
         }
+        if (sum4 == 3) {
+            players.winnerDefined = true;
+        }
     }
 }
 
@@ -103,6 +110,11 @@ function alertWinner() {
     if(players.winnerDefined == true) {
         document.querySelector(".overlay2").id = '';
         players.playerTurn == "playerA" ? document.getElementById("winnerName").textContent = players.playerAName : document.getElementById("winnerName").textContent = players.playerBName;
+    } else {
+        if ((players.playerAMoves.length + players.playerBMoves.length) == 9) {
+            document.querySelector(".overlay2").id = '';
+            document.getElementById("winnerName").textContent = "Nobody, it is a draw!";
+        }
     }
 }
 
