@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="tic-tac-toe.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="tic-tac-toe.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    />
+  </head>
 
-<body>
-<div class="header">
-    <h1>Tic Tac Toe</h1>
-</div>
+  <body>
+    <div class="header">
+      <h1>Tic Tac Toe</h1>
+    </div>
 
-<div class="container">
-    <div class="turns">
+    <div class="container">
+      <div class="turns">
         <h2 id="first" class="highlight">Player 1</h2>
         <h2>vs</h2>
         <h2 id="second">Player 2</h2>
-    </div>
-    <div class="board">
+      </div>
+      <div class="board">
         <div class="cell 00"></div>
         <div class="cell 01"></div>
         <div class="cell 02"></div>
@@ -30,36 +33,41 @@
         <div class="cell 20"></div>
         <div class="cell 21"></div>
         <div class="cell 22"></div>
+      </div>
     </div>
-</div>
 
-<div class="overlay">
-    <div class="pop-content">
+    <div class="overlay">
+      <div class="pop-content">
         <form id="asknames">
-            <div>
-                <label for="playerA">First player's name</label>
-                <input type="text" id="playerA" required>
-            </div>
-            <div>
-                <label for="playerB">Second player's name</label>
-                <input type="text" id="playerB" required>
-            </div>
-            <button type="submit" id="submit">Submit</button>
+          <div>
+            <label for="playerA">First player's name</label>
+            <input type="text" id="playerA" required />
+          </div>
+          <div>
+            <label for="playerB">Second player's name</label>
+            <input type="text" id="playerB" required />
+          </div>
+          <button type="submit" id="submit">Submit</button>
         </form>
+      </div>
     </div>
-</div>
 
-<div class="overlay2" id="hidden">
-    <div class="pop-content">
+    <div class="overlay2" id="hidden">
+      <div class="pop-content">
         <form id="alertwinner">
-            <p>The winner is: <span id="winnerName"></span></p>
-            <button type="submit" id="restart">Restart</button>
+          <p>The winner is: <span id="winnerName"></span></p>
+          <button type="submit" id="restart">Restart</button>
         </form>
+      </div>
     </div>
-</div>
 
-<div class="footer">designed by <a href="https://github.com/darialiit" target="_blank">@darialiit</a></div>
+    <div class="footer">
+      designed by
+      <a href="https://github.com/dasha-solomkina" target="_blank"
+        >@dasha-solomkina</a
+      >
+    </div>
 
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
